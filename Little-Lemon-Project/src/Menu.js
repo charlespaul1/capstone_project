@@ -1,10 +1,12 @@
 import React from 'react'
+import Nav from './components/Nav'
 
 const Menu = () => {
   return (
-    <div>
+    <>
+      <Nav />
       
-    </div>
+    </>
   )
 }
 

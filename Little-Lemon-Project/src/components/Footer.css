@@ -1,0 +1,38 @@
+.footer-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin:  2rem ;
+    background-color: #3333;
+    padding: 1.5rem 0;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 40px;
+}
+.right{
+    padding: 1rem;
+    width: 30%;
+}
+.right img {
+    padding: 10px 10px;
+}
+.middle {
+    width: 30%;
+}
+.middle li {
+    text-decoration: none;
+}
+.left {
+    width: 30%;
+    padding-right: 3rem;
+}
+.copyright  {
+    bottom: 0;
+    align-items: center;
+    background-color: #495E57;
+    padding: 10px 350px;
+    
+}
+.copyright .p{
+    align-items: center;
+    justify-content: center;
+}

@@ -1,0 +1,62 @@
+header{
+    display: flex;
+    background-color: #495E57;
+    padding: 0 15%;
+    height: 300px;
+    padding-top: 0;
+    
+}
+.leftSide {
+    width: 60%;
+}
+.rightSide{
+    width: 40%;
+}
+.leftSide{
+    color: white;
+}
+header h1{
+    margin-top: 1rem;
+    color: #F4CE14;
+    line-height: 60px;
+}
+header p {
+    margin: 2rem 0;
+    max-width: 400px;
+}
+ header img {
+    display: flex;
+    height: calc(100% + 40px);
+    margin-top: 20px;
+    width: 300px;
+    transform: translateY(10%);
+    border-radius: 16px;
+    /* float: inline-end; */
+    /* width: 400px; */
+    /* aspect-ratio: 4/6; */
+    /* object-fit:cover; */
+    /* padding: 16px 16px 0 0; */
+    /* padding-right: 20px; */
+    /* overflow: visible; */
+}
+
+  /* Style for the reservation button */
+  button {
+    background-color: #F4CE14;
+    border-radius: 5px;
+    padding: 10px 20px;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  button a{
+    text-decoration: none;
+    color: black;
+  }
+  
+  button:hover {
+    opacity: 0.5;
+  }
+  

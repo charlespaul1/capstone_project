@@ -1,9 +1,10 @@
 import React from 'react'
+import './Nav.css'
 import Logo from '../assets/Logo .svg'
 import { Link } from 'react-router-dom'
 const Nav = () => {
   return (
-    <>
+    <div className='container'>
     <Link to='/'>
       <img src={Logo} alt='Logo'/>
     </Link>
@@ -13,12 +14,12 @@ const Nav = () => {
         <li><Link to='/about'>About</Link></li>
         <li><Link to='/menu'>Menu</Link></li>
         <li><Link to='/reservation'>Reservation</Link></li>
-        <li><Link to='/order-online'>Order-Online</Link></li>
-        <li><Link to='/logo'>Logo</Link></li>
+        <li><Link to='/order-online'>OrderOnline</Link></li>
+        <li><Link to='/login'>Login</Link></li>
       </ul>
     </nav>
       
-    </>
+    </div>
   )
 }
 

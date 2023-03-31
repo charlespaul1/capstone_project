@@ -1,0 +1,23 @@
+.top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+    padding: 40px 30%;
+}
+.top button {
+    align-items: center;
+    color: black;
+    background-color: #F4CE14;
+    border-radius: 5px;
+    padding: 10px 20px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+.top .button:hover {
+    opacity: 0.5;
+  }
