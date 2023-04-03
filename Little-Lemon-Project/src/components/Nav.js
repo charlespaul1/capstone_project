@@ -11,9 +11,8 @@ const Nav = () => {
     <nav>
       <ul>
         <li><Link to='/'>Home</Link></li>
-        <li><Link to='/about'>About</Link></li>
         <li><Link to='/menu'>Menu</Link></li>
-        <li><Link to='/reservation'>Reservation</Link></li>
+        <li><Link to='/booking-page'>BookingPage</Link></li>
         <li><Link to='/order-online'>OrderOnline</Link></li>
         <li><Link to='/login'>Login</Link></li>
       </ul>

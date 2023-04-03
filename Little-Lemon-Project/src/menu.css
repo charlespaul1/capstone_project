@@ -1,0 +1,10 @@
+/* making the cards to be arranged in a horizontal manner having 3 cards maximum the another horizontal arrangement below */
+.menu{
+    display: flex;
+    flex-direction: row;
+    grid-template-columns: repeat(2, 2fr);
+    grid-gap: 10px;
+    background-color: #495E57;  
+    flex-wrap: wrap;
+
+    }

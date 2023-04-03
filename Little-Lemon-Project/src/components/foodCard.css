@@ -1,0 +1,35 @@
+.food-card {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+    width: 420px;
+    height: 220px;
+    /* padding-left: 20px; */
+    background-color: #EDEFEE;
+    /* cards to be horizontal */
+  }
+  
+  .food-card img {
+    width: 200px;
+    height: auto;
+    border-radius: 10px 0 0 10px;
+  }
+  
+  .food-card-details {
+    padding: 20px;
+  }
+  
+  .food-card-details h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  
+  .food-card-details h4 {
+    margin-top: 20px;
+    margin-bottom: 0;
+    color:#EE9972;
+  }
+  
