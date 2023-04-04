@@ -1,117 +1,137 @@
-import { useState } from "react";
-import React from 'react'
-import './BookingForm.css'
-
+import React from "react";
+import { Formik, Form, Field} from "formik";
+import * as Yup from "yup";
+import {
+  Input,
+  Button,
+  Select,
+  FormControl,
+  FormErrorMessage,
+  InputGroup,
+} from "@chakra-ui/react";
+// validation schema
+const validationSchema = Yup.object().shape({
+  name: Yup.string().required("Name is required"),
+  phone: Yup.string().required("Phone number is required"),
+  date: Yup.date().required("Date is required"),
+  guests: Yup.number().required("Number of guests is required").min(1, "Minimum 1 guest"),
+  occasion: Yup.string().required("Occasion is required"),
+});
+// initial values
+const initialValues = {
+  name: "",
+  phone: "",
+  date: "",
+  guests: "",
+  occasion: "",
+};
+// form component
 const BookingForm = () => {
-    // the form fields
-    const [name, setName] = useState('');
-    const [phone, setPhone] = useState('');
-    const [date, setDate] = useState('');
-    const [time, setTime] = useState('');
-    const [numOfGuests, setNumOfGuests] = useState('');
-    const [occasion, setOccasion] = useState('');
-    const [availableTables, setAvailableTables] = useState([
-        'Table 1',
-        'Table 2',
-        'Table 3',
-        'Table 4',
-        'Table 5',
-        'Table 6',
-        'Table 7',
-        'Table 8',
-        'Table 9',
-        'Table 10',
-    ]);
-    const[availableTimes, setAvailableTimes] = useState([
-        '12:00',
-        '13:00',
-        '14:00',
-        '18:00',
-        '19:00',
-        '20:00',
-        '21:00'
-    ]);
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Reservation Submitted',name, phone, date, time, numOfGuests, occasion);
+  const handleSubmit = (values, actions) => {
+    console.log(values);
+    actions.setSubmitting(false);
+  }
+  const inputStyles = {
+    variant: "outline",
+    borderRadius: "5px",
+    w: "100%",
+    fontSize: "1.2rem",
+    mb: "1rem",
+    errorBorderColor: "red",
+  }
+  const errorStyles = {
+    color: "red",
+    fontSize: "0.8rem",
+    fontWeight: "bold",
+  }
+
   return (
-    <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name</label>
-        <input 
-        type="name"
-        id="name"
-        value={name}
-        onChange={(e)=> setName(e.target.value)}
-        />
-
-         <label htmlFor="phone">Phone Number</label>
-        <input 
-        type="phone"
-        id="phone"
-        value={phone}
-        onChange={(e)=> setPhone(e.target.value)}
-        />
-
-         <label htmlFor="date">Date</label>
-        <input 
-        type="date"
-        id="date"
-        value={date}
-        onChange={(e)=> setDate(e.target.value)}
-        />
-
-         <label htmlFor="time">Time:</label>
-        <select id="time"
-        value={time}
-        onChange={(e)=> setTime(e.target.value)}>
-        {availableTimes.map((timeOption)=>(
-            <option key={timeOption} value={timeOption}>
-                {timeOption}</option>
-        ))}
-
-        </select>
-
-         <label htmlFor="numOfGuests">Number Of Guests</label>
-        <input 
-        type="numOfGuests"
-        id="numOfGuests"
-        value={numOfGuests}
-        onChange={(e)=> setNumOfGuests(e.target.value)}
-        />
-        <label htmlFor="occasion">Occasion</label>
-        <select
-        id="occasion"
-        value={occasion}
-        onChange={(e)=> setOccasion(e.target.value)}
-        >
-        <option value="">Select your Occasion</option>
-        <option value="Birthday">Birthday</option>
-        <option value="Anniversary">Anniversary</option>
-        <option value="Corporate Event">Corporate Event</option>
-        <option value="other">Other</option>
-        </select>
-         <label htmlFor="availableTables">Available Tables</label>
-        <input 
-        type="availableTables"
-        id="availableTables"
-        value={availableTables}
-        onChange={(e)=> setAvailableTables(e.target.value)}
-        />
-
-        <label htmlFor="availableTimes">Available Times</label>
-        <input 
-        type="availableTimes"
-        id="availableTimes"
-        value={availableTimes}
-        onChange={(e)=> setAvailableTimes(e.target.value)}
-        />
-        <button type="submit" 
-        // onClick={handleSubmit}
-        >Submit Reservation</button>
-
-    </form>
-  )
-}}
-
-export default BookingForm
-
+    <Formik 
+    initialValues={initialValues} 
+    onSubmit={handleSubmit} 
+     validationSchema={validationSchema}>
+      {({ isSubmitting, errors, touched }) => (
+        <Form>
+          <Field name="name">
+            {({ field, form }) => (
+              <FormControl isInvalid={errors.name && touched.name}>
+                <Input {...field} 
+                id="name" 
+                placeholder="Name"
+                
+                style={inputStyles}
+                 />
+                <FormErrorMessage 
+                style={errorStyles}
+                >{errors.name}</FormErrorMessage>
+              </FormControl>
+                    )}
+          </Field>
+          <Field name="phone">
+            {({ field, form }) => (
+              <FormControl isInvalid={errors.phone && touched.phone}>
+                <InputGroup w='100%'>
+                
+                <Input {...field} 
+                style={inputStyles}
+                id="phone" placeholder="Phone" />
+                </InputGroup>
+         
+                <FormErrorMessage
+                style={errorStyles}
+                >{errors.phone}</FormErrorMessage>
+              </FormControl>
+                    )}
+          </Field>
+          <Field name="date">
+            {({ field, form }) => (
+              <FormControl isInvalid={errors.date && touched.date}>
+                <Input 
+                style={inputStyles}
+                {...field} id="date" placeholder="Date" />
+                <FormErrorMessage
+                style={errorStyles}
+                >{errors.date}</FormErrorMessage>
+              </FormControl>
+                    )}
+          </Field>
+          <Field name="guests">
+            {({ field, form }) => (
+              <FormControl isInvalid={errors.guests && touched.guests}>
+                <Input 
+                style={inputStyles}
+                {...field} id="guests" placeholder="Guests" />
+                <FormErrorMessage
+                style={errorStyles}
+                >{errors.guests}</FormErrorMessage>
+              </FormControl>
+                    )}
+          </Field>
+          <Field name="occasion">
+            {({ field, form }) => (
+              <FormControl isInvalid={errors.occasion && touched.occasion}>
+                <Select {...field} id="occasion" placeholder="Occasion">
+                  <option value="birthday">Birthday</option>
+                  <option value="anniversary">Anniversary</option>
+                  <option value="corporate">Corporate</option>
+                  <option value="other">Other</option>
+                </Select>
+                <FormErrorMessage
+                style={errorStyles}
+                >{errors.occasion}</FormErrorMessage>
+              </FormControl>
+                    )}
+          </Field>
+          <Button 
+          type="submit" disabled={isSubmitting} 
+          colorScheme="#495E57"
+          
+          >
+            Submit
+          </Button>
+        </Form>
+      )}
+    </Formik>
+  );
+};
+export default BookingForm;

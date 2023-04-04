@@ -8,7 +8,6 @@ import spagheti from './assets/spagheti.jpg'
 import Bruchetta from './assets/mike-van-den-bos-F4qVqfkG2Aw-unsplash.jpg'
 import LemonDessert from './assets/lemon dessert.jpg'
 import Tacos from './assets/Tacos.jpg'
-import BookingForm from './components/BookingForm'
   const Menu = () => {
     const menuItems = [
       {
