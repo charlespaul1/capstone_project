@@ -14,10 +14,16 @@ import {
 // validation schema
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Name is required"),
-  phone: Yup.string().required("Phone number is required"),
-  date: Yup.date().required("Date is required"),
-  time:Yup.number().required("Time for Reservation is required"),
-  guests: Yup.number().required("Number of guests is required").min(1, "Minimum 1 guest"),
+  phone: Yup.string().required("Phone number is required")
+    .matches(/^[0-9]+$/, "Must be only digits")
+    .min(10, "Must be exactly 10 digits")
+    .max(10, "Must be exactly 10 digits"),
+    date: Yup.date().required("Date is required"),
+  guests: Yup.number().required("Number of guests is required")
+             .min(1, "Minimum 1 guest")
+              .max(10, "Maximum 10 guests")
+              .typeError("Must be a number")
+              .positive("Must be a positive number"),
   occasion: Yup.string().required("Occasion is required"),
 });
 // initial values
@@ -30,7 +36,17 @@ const initialValues = {
   occasion: "",
 
 };
-// form component
+// form 
+// array for available times
+const times = [
+  { value: "noon", label: "12:00 pm" },
+  { value: "16:00", label: "16:00 pm" },
+  { value: "19:00", label: "19:00 pm" },
+  { value: "20:00", label: "20:00 pm" },
+  { value: "21:00", label: "21:00 pm" },
+  { value: "22:00", label: "22:00 pm" },
+];
+
 const BookingForm = () => {
   const handleSubmit = (values, actions) => {
     console.log(values);
