@@ -1,16 +1,21 @@
-import React from "react";
-import { Formik, Form, Field} from "formik";
+import React , {useState, useEffect}from "react";
+import DatePicker from "react-datepicker";
+import 'react-datepicker/dist/react-datepicker.css';
+import { Formik,Form, Field} from "formik";
 import * as Yup from "yup";
 import {
+  Box,
+  Text,
   Input,
   Button,
   Select,
   FormControl,
   FormErrorMessage,
   InputGroup,
-  
+  FormLabel,
   
 } from "@chakra-ui/react";
+import {fetchAPI} from './ApiFile'
 // validation schema
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Name is required"),
@@ -30,29 +35,47 @@ const validationSchema = Yup.object().shape({
 const initialValues = {
   name: "",
   phone: "",
-  date: "",
-  time:"",
+  date: new Date(),
+  time: "",
   guests: "",
   occasion: "",
-
 };
-// form 
-// array for available times
-const times = [
-  { value: "noon", label: "12:00 pm" },
-  { value: "16:00", label: "16:00 pm" },
-  { value: "19:00", label: "19:00 pm" },
-  { value: "20:00", label: "20:00 pm" },
-  { value: "21:00", label: "21:00 pm" },
-  { value: "22:00", label: "22:00 pm" },
-];
+
+
+
+const boxStyles = {
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "center",
+  alignItems: "center",
+  width: "100%",
+  marginTop: "20px",
+  // padding: "20px",
+  borderRadius: "5px",
+  background: "#EDEFEE",
+  boxShadow: "0 0 10px rgba(0, 0, 0, 0.8)",
+  maxWidth: "500px",
+
+}
+
 
 const BookingForm = () => {
   const handleSubmit = (values, actions) => {
-    console.log(values);
+    // const selectedDate = selectedDate;
+    alert(`Reservation details: \nName: ${values.name}\nPhone: ${values.phone}\nDate: ${selectedDate.toLocaleDateString()} \nTime: ${values.time} \nNumber of Guests: ${values.guests} \nOccasion: ${values.occasion}`);
     actions.setSubmitting(false);
   }
-  const inputStyles = {
+  const [availableTimes, setAvailableTimes] = useState([]);
+
+useEffect(() => {
+  const today = new Date();
+  fetchAPI(today)
+    .then((response) => setAvailableTimes(response))
+    .catch((error) => console.log(error));
+}, []);
+
+    
+ const inputStyles = {
     variant: "flushed",
     borderRadius: "5px",
     w: "100%",
@@ -82,6 +105,40 @@ const selectStyle = {
   borderColor:"#495E57"
 
 }
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
+
+
+const datepickerStyle = {
+  input: {
+    ...inputStyles,
+    padding: "1rem",
+    fontSize: "1.2rem",
+    backgroundColor: "#fff",
+    color: "#fff",
+    border: "none",
+    cursor: "pointer",
+    _hover: {
+      backgroundColor: "#495E57",
+      color: "#fff",
+        
+    _focus: {
+      boxShadow: "rgba(0, 0, 0, 0.25) 0px 0px 0px 3px",
+      outline: "none",
+      border: "none",
+    },
+    },
+  },
+  Select: {
+    variant: "flushed",
+    borderRadius: "5px",
+    fontSize: "1.2rem",
+
+  }
+
+}
   return (
     <Formik 
     initialValues={initialValues} 
@@ -91,6 +148,7 @@ const selectStyle = {
      >
       {({ isSubmitting, errors, touched }) => (
         <Form
+
         style={{
           display: "flex",
           flexDirection: "column",
@@ -105,12 +163,17 @@ const selectStyle = {
           maxWidth: "500px",
         }}  
         >
+          <h1 
+          style={{
+            color: "#F4CE57",
+          }}
+          >Book a Reservation Now!!</h1>
           <Field name="name">
             {({ field, form }) => (
               <FormControl isInvalid={errors.name && touched.name}>
                 <Input {...field} 
                 id="name" 
-                placeholder="Name"
+                placeholder="Enter Your Name"
                 variant="outline"
                 style={inputStyles}
                  />
@@ -123,11 +186,11 @@ const selectStyle = {
           <Field name="phone">
             {({ field, form }) => (
               <FormControl isInvalid={errors.phone && touched.phone}>
-                <InputGroup w='100%'>
+                <InputGroup>
                 
                 <Input {...field} 
                 style={inputStyles}
-                id="phone" placeholder="Phone" />
+                id="phone" placeholder="Enter Your Phone Number" />
                 </InputGroup>
          
                 <FormErrorMessage
@@ -139,40 +202,59 @@ const selectStyle = {
           <Field name="date">
             {({ field, form }) => (
               <FormControl isInvalid={errors.date && touched.date}>
-                <Input 
-                style={inputStyles}
-                {...field} id="date" placeholder="Date" />
+              <FormLabel htmlFor="date"> Select a Date for Your Reservation</FormLabel>  
+              <DatePicker
+                {...field}
+                id="date"
+                style={datepickerStyle}
+                selected={selectedDate}
+                onChange={handleDateChange}
+              
+                dateFormat="dd/MM/yyyy"
+                placeholderText="Select a date"
+                showYearDropdown
+                showMonthDropdown
+                dropdownMode="select"
+                popperPlacement=""
+                />
+
                 <FormErrorMessage
                 style={errorStyles}
                 >{errors.date}</FormErrorMessage>
               </FormControl>
                     )}
           </Field>
-          <Field name="time">
-            {({field, form}) =>(
-              <FormControl isInvalid={errors.guests && touched.guests}>
-               <Select 
-                {...field} id="time"
-                 placeholder="Time"
-                 style={selectStyle}
-                 bg='#FBDABB'
-                 color='white'
-                 >
-                  <option value="noon">12:00 pm</option>
-                  <option value="19:00">16:00 pm</option>
-                  <option value="20:00">18:00 pm</option>
-                  <option value="21:00">20:00 pm</option>
-                  <option value="21:00">21:00 pm</option>
-                  <option value="21:00">22:00 pm</option>
-                  <option value="21:00">10:00 am</option>
-                </Select>
-                <FormErrorMessage
-                style={errorStyles}
-                >{errors.time}</FormErrorMessage>
-                  </FormControl>
-            )}
-
-          </Field>
+<htmlFor  style={{color:'black', marginTop:"20px"}}> The Available Times for Reservation</htmlFor>
+          <Box
+            style={boxStyles}
+          
+          >
+              {availableTimes.length > 0 && (
+                <Text fontSize="sm"
+                
+                >
+                  
+                  {availableTimes.map((time) => (
+                    <span key={time}> {time} </span>
+                  ))}
+                </Text>
+              )}
+            </Box>
+            <Field name="time">
+  {({ field, form }) => (
+    <FormControl isInvalid={form.errors.time && form.touched.time}>
+      <FormLabel htmlFor="time" mb="0.5rem">Time</FormLabel>
+      <Select id="time" {...field} {...selectStyle}>
+        <option value="">Select Time</option>
+        {availableTimes.map((time) => (
+          <option key={time} value={time}>{time}</option>
+        ))}
+      </Select>
+      <FormErrorMessage style={errorStyles}>{form.errors.time && form.touched.time && form.errors.time}</FormErrorMessage>
+    </FormControl>
+  )}
+</Field>
+          
           <Field name="guests">
             {({ field, form }) => (
               <FormControl isInvalid={errors.guests && touched.guests}>

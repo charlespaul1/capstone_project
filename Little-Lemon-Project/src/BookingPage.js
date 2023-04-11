@@ -3,6 +3,7 @@ import Nav from './components/Nav'
 import photo from './assets/bookphoto.jpg'
 import BookingForm from './components/BookingForm'
 import './Bookingpage.css'
+// import ReservationForm from './components/lift'
 
 const BookingPage = () => {
   return (
@@ -13,6 +14,7 @@ const BookingPage = () => {
       </div>
 
      <BookingForm />
+     {/* <ReservationForm /> */}
 </>
     
   )
