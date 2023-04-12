@@ -90,6 +90,9 @@ const selectStyle = {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const handleDateChange = (date) => {
     setSelectedDate(date);
+    fetchAPI(date).then((times) => {
+      setAvailableTimes(times);
+    });
   };
 
 
@@ -214,15 +217,13 @@ const datepickerStyle = {
             <Field name="time">
   {({ field, form }) => (
     <FormControl isInvalid={errors.time && touched.time}>
-      <FormLabel htmlFor="time"> Select a Time for Your Reservation</FormLabel>
       <Select
+        {...field}  
         id="time"
         name="time"
-        placeholder="Select a time"
-        value={field.value}
-        // onChange={handleChange}
-        // onBlur={handleBlur}
-        {...selectStyle}
+        placeholder="Select Time for  Reservation"
+        variant="outline"
+        style={selectStyle}
         >
         {availableTimes.map((time) => (
           <option key={time} value={time}>
@@ -255,7 +256,7 @@ const datepickerStyle = {
               <FormControl isInvalid={errors.occasion && touched.occasion}>
                 <Select 
                 {...field} id="occasion"
-                 placeholder="Occasion"
+                 placeholder="Occasion for Reservation"
                  style={selectStyle}
                  bg='#FBDABB'
                  borderColor='tomato'
