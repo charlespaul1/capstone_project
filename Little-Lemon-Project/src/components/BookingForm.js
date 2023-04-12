@@ -4,8 +4,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { Formik,Form, Field} from "formik";
 import * as Yup from "yup";
 import {
-  Box,
-  Text,
+
   Input,
   Button,
   Select,
@@ -15,7 +14,7 @@ import {
   FormLabel,
   
 } from "@chakra-ui/react";
-import {fetchAPI} from './ApiFile'
+import { fetchAPI } from "./BookingAPI"
 // validation schema
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Name is required"),
@@ -42,38 +41,21 @@ const initialValues = {
 };
 
 
-
-const boxStyles = {
-  display: "flex",
-  flexDirection: "row",
-  justifyContent: "center",
-  alignItems: "center",
-  width: "100%",
-  marginTop: "20px",
-  // padding: "20px",
-  borderRadius: "5px",
-  background: "#EDEFEE",
-  boxShadow: "0 0 10px rgba(0, 0, 0, 0.8)",
-  maxWidth: "500px",
-
-}
-
-
 const BookingForm = () => {
   const handleSubmit = (values, actions) => {
     // const selectedDate = selectedDate;
     alert(`Reservation details: \nName: ${values.name}\nPhone: ${values.phone}\nDate: ${selectedDate.toLocaleDateString()} \nTime: ${values.time} \nNumber of Guests: ${values.guests} \nOccasion: ${values.occasion}`);
     actions.setSubmitting(false);
   }
+
+  // handling available times
   const [availableTimes, setAvailableTimes] = useState([]);
-
-useEffect(() => {
-  const today = new Date();
-  fetchAPI(today)
-    .then((response) => setAvailableTimes(response))
-    .catch((error) => console.log(error));
-}, []);
-
+  useEffect(() => {
+    const today = new Date();
+    fetchAPI(today).then((times) => {
+      setAvailableTimes(times);
+    });
+  }, []);
     
  const inputStyles = {
     variant: "flushed",
@@ -139,6 +121,8 @@ const datepickerStyle = {
   }
 
 }
+
+
   return (
     <Formik 
     initialValues={initialValues} 
@@ -224,34 +208,33 @@ const datepickerStyle = {
               </FormControl>
                     )}
           </Field>
-<htmlFor  style={{color:'black', marginTop:"20px"}}> The Available Times for Reservation</htmlFor>
-          <Box
-            style={boxStyles}
-          
-          >
-              {availableTimes.length > 0 && (
-                <Text fontSize="sm"
-                
-                >
+
                   
-                  {availableTimes.map((time) => (
-                    <span key={time}> {time} </span>
-                  ))}
-                </Text>
-              )}
-            </Box>
+                  
             <Field name="time">
   {({ field, form }) => (
-    <FormControl isInvalid={form.errors.time && form.touched.time}>
-      <FormLabel htmlFor="time" mb="0.5rem">Time</FormLabel>
-      <Select id="time" {...field} {...selectStyle}>
-        <option value="">Select Time</option>
+    <FormControl isInvalid={errors.time && touched.time}>
+      <FormLabel htmlFor="time"> Select a Time for Your Reservation</FormLabel>
+      <Select
+        id="time"
+        name="time"
+        placeholder="Select a time"
+        value={field.value}
+        // onChange={handleChange}
+        // onBlur={handleBlur}
+        {...selectStyle}
+        >
         {availableTimes.map((time) => (
-          <option key={time} value={time}>{time}</option>
+          <option key={time} value={time}>
+            {time}
+          </option>
         ))}
-      </Select>
-      <FormErrorMessage style={errorStyles}>{form.errors.time && form.touched.time && form.errors.time}</FormErrorMessage>
+        </Select>
+        <FormErrorMessage
+        style={errorStyles}
+        >{errors.time}</FormErrorMessage>
     </FormControl>
+    
   )}
 </Field>
           
