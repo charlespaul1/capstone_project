@@ -41,12 +41,12 @@ const initialValues = {
 };
 
 
-const BookingForm = () => {
-  const handleSubmit = (values, actions) => {
-    // const selectedDate = selectedDate;
-    alert(`Reservation details: \nName: ${values.name}\nPhone: ${values.phone}\nDate: ${selectedDate.toLocaleDateString()} \nTime: ${values.time} \nNumber of Guests: ${values.guests} \nOccasion: ${values.occasion}`);
-    actions.setSubmitting(false);
-  }
+const BookingForm = ({submitForm}) => {
+  // const handleSubmit = (values, actions) => {
+  //   // const selectedDate = selectedDate;
+  //   alert(`Reservation details: \nName: ${values.name}\nPhone: ${values.phone}\nDate: ${selectedDate.toLocaleDateString()} \nTime: ${values.time} \nNumber of Guests: ${values.guests} \nOccasion: ${values.occasion}`);
+  //   actions.setSubmitting(false);
+  // }
 
   // handling available times
   const [availableTimes, setAvailableTimes] = useState([]);
@@ -129,7 +129,10 @@ const datepickerStyle = {
   return (
     <Formik 
     initialValues={initialValues} 
-    onSubmit={handleSubmit} 
+    onSubmit={(values, actions) => {
+      submitForm(values);
+      actions.setSubmitting(false);
+    }}
      validationSchema={validationSchema}
      
      >
@@ -266,6 +269,7 @@ const datepickerStyle = {
                   <option value="anniversary">Anniversary</option>
                   <option value="corporate">Corporate</option>
                   <option value="other">Other</option>
+                  <option value='none'>None</option>
                 </Select>
                 <FormErrorMessage
                 style={errorStyles}
@@ -274,11 +278,15 @@ const datepickerStyle = {
                     )}
           </Field>
           <Button 
-          type="submit" disabled={isSubmitting} 
-          colorScheme="#495E57"
+          type="submit" 
+          bgColor="#FFAFOO"
+          _hover={{bgColor: "#495E57", color:"#fff"}}
+          disabled={isSubmitting}
+          isLoading={isSubmitting}
           
-          >
-            Submit Reservation
+         
+      >
+        {isSubmitting ? "Submmiting" : "Submit"}
           </Button>
         </Form>
       )}
