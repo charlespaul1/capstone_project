@@ -42,12 +42,7 @@ const initialValues = {
 
 
 const BookingForm = ({submitForm}) => {
-  // const handleSubmit = (values, actions) => {
-  //   // const selectedDate = selectedDate;
-  //   alert(`Reservation details: \nName: ${values.name}\nPhone: ${values.phone}\nDate: ${selectedDate.toLocaleDateString()} \nTime: ${values.time} \nNumber of Guests: ${values.guests} \nOccasion: ${values.occasion}`);
-  //   actions.setSubmitting(false);
-  // }
-
+  
   // handling available times
   const [availableTimes, setAvailableTimes] = useState([]);
   useEffect(() => {
@@ -161,6 +156,7 @@ const datepickerStyle = {
           <Field name="name">
             {({ field, form }) => (
               <FormControl isInvalid={errors.name && touched.name}>
+                <FormLabel htmlFor="name">Name</FormLabel>
                 <Input {...field} 
                 id="name" 
                 placeholder="Enter Your Name"
@@ -176,8 +172,8 @@ const datepickerStyle = {
           <Field name="phone">
             {({ field, form }) => (
               <FormControl isInvalid={errors.phone && touched.phone}>
+                <FormLabel htmlFor="phone">Phone Number</FormLabel>
                 <InputGroup>
-                
                 <Input {...field} 
                 style={inputStyles}
                 id="phone" placeholder="Enter Your Phone Number" />
@@ -192,13 +188,14 @@ const datepickerStyle = {
           <Field name="date">
             {({ field, form }) => (
               <FormControl isInvalid={errors.date && touched.date}>
-              <FormLabel htmlFor="date"> Select a Date for Your Reservation</FormLabel>  
+              <FormLabel htmlFor="date">Select a Date for Your Reservation</FormLabel>  
               <DatePicker
                 {...field}
                 id="date"
                 style={datepickerStyle}
                 selected={selectedDate}
                 onChange={handleDateChange}
+                value={selectedDate}
               
                 dateFormat="dd/MM/yyyy"
                 placeholderText="Select a date"
@@ -220,6 +217,7 @@ const datepickerStyle = {
             <Field name="time">
   {({ field, form }) => (
     <FormControl isInvalid={errors.time && touched.time}>
+      <FormLabel htmlFor="time">Select a Time for Your Reservation</FormLabel>
       <Select
         {...field}  
         id="time"
@@ -245,6 +243,7 @@ const datepickerStyle = {
           <Field name="guests">
             {({ field, form }) => (
               <FormControl isInvalid={errors.guests && touched.guests}>
+                <FormLabel htmlFor="guests">Number of Guests</FormLabel>
                 <Input 
                 style={inputStyles}
                 {...field} id="guests" placeholder="Number of Guests" />
@@ -257,6 +256,7 @@ const datepickerStyle = {
           <Field name="occasion">
             {({ field, form }) => (
               <FormControl isInvalid={errors.occasion && touched.occasion}>
+                <FormLabel htmlFor="occasion">Occasion for Reservation</FormLabel>
                 <Select 
                 {...field} id="occasion"
                  placeholder="Occasion for Reservation"
@@ -268,7 +268,7 @@ const datepickerStyle = {
                   <option value="birthday">Birthday</option>
                   <option value="anniversary">Anniversary</option>
                   <option value="corporate">Corporate</option>
-                  <option value="other">Other</option>
+                  <option value="other">Business lunch</option>
                   <option value='none'>None</option>
                 </Select>
                 <FormErrorMessage

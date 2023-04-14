@@ -1,6 +1,6 @@
 import {screen, render, fireEvent} from '@testing-library/react'
 import BookingForm from '../components/BookingForm'
-import userEvent from '@testing-library/user-event'
+
 // testing for a static text that is rendered on the BookingPage
 it('renders static text', () => {
     render(<BookingForm />)
@@ -32,5 +32,18 @@ it('renders a date after a user enters a date', () => {
     expect(date).toBeInTheDocument()
 })
 
+test('shows error messages when form is submitted with invalid values', async () => {
+    render(<BookingForm />);
+    fireEvent.submit(screen.getByRole('button'));
 
+    const nameError = await screen.findByText("Name is required");
+    const phoneError = await screen.findByText("Phone number is required");
+    
+    const guestsError = await screen.findByText("Number of guests is required");
+    const occasionError = await screen.findByText("Occasion is required");
 
+    expect(nameError).toBeInTheDocument();
+    expect(phoneError).toBeInTheDocument();
+    expect(guestsError).toBeInTheDocument();
+    expect(occasionError).toBeInTheDocument();
+  });

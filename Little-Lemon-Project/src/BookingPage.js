@@ -26,7 +26,7 @@ const BookingPage = () => {
     if(isValid) {
       const isSubmitted = submitAPI(values);
       if(isSubmitted) {
-        navigate('/confirmed-booking', {state: {...values, date: values.date.toISOString().slice(0, 10)}});
+        navigate('/confirmed-booking', {state: values});
       } else {
         setError("Something went wrong, Form could not be submitted. Please try again later.");
       }
