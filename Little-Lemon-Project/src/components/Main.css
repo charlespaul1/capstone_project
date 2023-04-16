@@ -6,6 +6,11 @@
     margin-bottom: 0rem;
     padding: 40px 30%;
 }
+.top h1 {
+  font-weight: extra-bold;
+  font-family: 'Karla', sans-serif;
+
+}
 .top button {
     align-items: center;
     color: black;
@@ -16,7 +21,9 @@
     font-size: 16px;
     cursor: pointer;
     text-decoration: none;
+    font-family: 'Karla', sans-serif;
   }
+
   
 .top .button:hover {
     opacity: 0.5;

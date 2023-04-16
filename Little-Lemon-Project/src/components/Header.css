@@ -18,11 +18,17 @@ header{
 header h1{
     margin-top: 1rem;
     color: #F4CE14;
-    line-height: 60px;
+    line-height: 64px;
+    font-family: 'Markazi Text', serif;
+}
+header h2{
+  font-family: 'Markazi Text', serif;
+  line-height: 40px;
 }
 header p {
     margin: 2rem 0;
     max-width: 400px;
+    font-family: 'Karla', sans-serif;
 }
  header img {
     display: flex;
@@ -50,10 +56,13 @@ header p {
     font-size: 16px;
     cursor: pointer;
     text-decoration: none;
+    font-family: 'Karla', sans-serif;
+
   }
   button a{
     text-decoration: none;
     color: black;
+    font-family: 'Karla', sans-serif;
   }
   
   button:hover {

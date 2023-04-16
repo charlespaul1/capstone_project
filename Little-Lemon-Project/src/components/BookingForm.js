@@ -57,6 +57,7 @@ const BookingForm = ({submitForm}) => {
     borderRadius: "5px",
     w: "100%",
     fontSize: "1.2rem",
+    fontFamily:"karla",
     mb: "1rem",
     errorBorderColor: "red",
     focusBorderColor: "#495E57",
@@ -73,6 +74,7 @@ const selectStyle = {
   borderRadius: "5px",
   w: "100%",
   fontSize: "1.2rem",
+  fontFamily:"karla",
   mb: "1rem",
   errorBorderColor: "red",
   focusBorderColor: "#495E57",
@@ -96,6 +98,7 @@ const datepickerStyle = {
     ...inputStyles,
     padding: "1rem",
     fontSize: "1.2rem",
+    fontFamily:"karla",
     backgroundColor: "#fff",
     color: "#fff",
     border: "none",
@@ -118,6 +121,11 @@ const datepickerStyle = {
 
   }
 
+}
+const styleH1 ={
+  color: "#F4CE14",
+            fontSize: "2rem",
+            fontFamily: "Markazi Text', serif",
 }
 
 
@@ -146,25 +154,31 @@ const datepickerStyle = {
           background: "#495E57",
           boxShadow: "0 0 10px rgba(0, 0, 0, 0.8)",
           maxWidth: "500px",
+          
         }}  
         >
           <h1 
-          style={{
-            color: "#F4CE57",
-          }}
+          style={styleH1}
           >Book a Reservation Now!!</h1>
           <Field name="name">
             {({ field, form }) => (
-              <FormControl isInvalid={errors.name && touched.name}>
+              <FormControl 
+              isInvalid={errors.name && touched.name}
+           
+              >
                 <FormLabel htmlFor="name">Name</FormLabel>
                 <Input {...field} 
                 id="name" 
                 placeholder="Enter Your Name"
                 variant="outline"
                 style={inputStyles}
+                aria-label="Name"
+                aria-invalid={errors.name && touched.name ? "true" : "false"}
+                aria-describedby="name-error"
                  />
                 <FormErrorMessage 
                 style={errorStyles}
+                id="name-error"
                 >{errors.name}</FormErrorMessage>
               </FormControl>
                     )}
@@ -176,11 +190,17 @@ const datepickerStyle = {
                 <InputGroup>
                 <Input {...field} 
                 style={inputStyles}
-                id="phone" placeholder="Enter Your Phone Number" />
+                id="phone" placeholder="Enter Your Phone Number" 
+                aria-label="Phone Number"
+                aria-invalid={errors.phone && touched.phone ? "true" : "false"}
+                aria-describedby="phone-error"
+                
+                />
                 </InputGroup>
          
                 <FormErrorMessage
                 style={errorStyles}
+                id="phone-error"
                 >{errors.phone}</FormErrorMessage>
               </FormControl>
                     )}
@@ -196,6 +216,9 @@ const datepickerStyle = {
                 selected={selectedDate}
                 onChange={handleDateChange}
                 value={selectedDate}
+                aria-label="Reservation Date"
+                aria-invalid={errors.date && touched.date ? "true" : "false"}
+                aria-describedby="date-error"
               
                 dateFormat="dd/MM/yyyy"
                 placeholderText="Select a date"
@@ -207,6 +230,7 @@ const datepickerStyle = {
 
                 <FormErrorMessage
                 style={errorStyles}
+                id="date-error"
                 >{errors.date}</FormErrorMessage>
               </FormControl>
                     )}
@@ -225,7 +249,10 @@ const datepickerStyle = {
         placeholder="Select Time for  Reservation"
         variant="outline"
         style={selectStyle}
-        >
+        aria-label="Reservation Time"
+        aria-invalid={errors.time && touched.time ? "true" : "false"}
+        aria-describedby="time-error"
+       >
         {availableTimes.map((time) => (
           <option key={time} value={time}>
             {time}
@@ -234,6 +261,7 @@ const datepickerStyle = {
         </Select>
         <FormErrorMessage
         style={errorStyles}
+        id="time-error"
         >{errors.time}</FormErrorMessage>
     </FormControl>
     
@@ -246,9 +274,15 @@ const datepickerStyle = {
                 <FormLabel htmlFor="guests">Number of Guests</FormLabel>
                 <Input 
                 style={inputStyles}
-                {...field} id="guests" placeholder="Number of Guests" />
+                {...field} id="guests" placeholder="Number of Guests" 
+                aria-label="Number of Guests"
+                aria-invalid={errors.guests && touched.guests ? "true" : "false"}
+                aria-describedby="guests-error"
+                
+                />
                 <FormErrorMessage
                 style={errorStyles}
+                id="guests-error"
                 >{errors.guests}</FormErrorMessage>
               </FormControl>
                     )}
@@ -264,15 +298,20 @@ const datepickerStyle = {
                  bg='#FBDABB'
                  borderColor='tomato'
                  color='white'
+                  aria-label="Occasion for Reservation"
+                  aria-invalid={errors.occasion && touched.occasion ? "true" : "false"}
+                  aria-describedby="occasion-error"
                  >
                   <option value="birthday">Birthday</option>
                   <option value="anniversary">Anniversary</option>
                   <option value="corporate">Corporate</option>
-                  <option value="other">Business lunch</option>
+                  <option value="business">Business meeting</option>
+                  <option value="other">Other</option>
                   <option value='none'>None</option>
                 </Select>
                 <FormErrorMessage
                 style={errorStyles}
+                id="occasion-error"
                 >{errors.occasion}</FormErrorMessage>
               </FormControl>
                     )}
@@ -283,10 +322,11 @@ const datepickerStyle = {
           _hover={{bgColor: "#495E57", color:"#fff"}}
           disabled={isSubmitting}
           isLoading={isSubmitting}
-          
+          role="button"
+          aria-label="Submit reservation form"
          
       >
-        {isSubmitting ? "Submmiting" : "Submit"}
+        {isSubmitting ? "Submitting" : "Submit"}
           </Button>
         </Form>
       )}

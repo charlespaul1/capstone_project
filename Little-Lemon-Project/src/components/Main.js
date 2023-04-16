@@ -47,7 +47,7 @@ const Main = () => {
       <section className='specials'>
         <div className='top'>
           <h1>This Weeks Specials!</h1>
-          <button>Online Menu</button>
+          
         </div>
         <div className='cards'>{specialsCards}</div>
       </section>

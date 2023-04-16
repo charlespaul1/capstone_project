@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import Nav from './components/Nav'
-import photo from './assets/bookphoto.jpg'
+import brisqute from './assets/brisqute.jpg'
 import BookingForm from './components/BookingForm'
 import './Bookingpage.css'
 import { submitAPI } from './components/BookingAPI'
@@ -42,7 +42,7 @@ const BookingPage = () => {
 <>
       <Nav />
       <div className='food-image'>
-        <img src={photo} alt='food '/>
+        <img src={brisqute} alt='food '/>
       </div>
 
      <BookingForm submitForm={submitForm}/>
