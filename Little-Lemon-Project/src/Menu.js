@@ -28,7 +28,7 @@ import Tacos from './assets/Tacos.jpg'
         id: 3,
         title: 'Greek Salad',
         image: greekSalad,
-        description:'The famous Greek salad of crispy lettuce, peppers, olives & Feta cheese garnished with crunchy garlic and rosemary croutons',
+        description:'salad of crispy lettuce, peppers, olives & Feta cheese garnished with crunchy garlic & rosemary croutons',
         price: '$10.00'
       },
       {
@@ -42,7 +42,7 @@ import Tacos from './assets/Tacos.jpg'
         id:5,
         title: 'Lemon Dessert',
         image: LemonDessert,
-        description: 'This comes straight from Grandma`s recipe book, every last ingredient has been sourced and it is as authentic as can be imagined',
+        description: 'straight from Grandma`s recipe book, every last ingredient has been sourced',
         price: '$5.00'
 
       },

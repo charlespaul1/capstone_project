@@ -55,3 +55,39 @@
   margin-top: auto;
   cursor: pointer;
 }
+@media  only screen and (max-width: 1040px) {
+    .cards{
+        flex-direction: row;
+        /* align-items: center; */
+        padding-left: 0px;
+        flex-wrap: wrap;
+        width: 100%;
+        overflow: scroll;
+    }
+    .card{
+        margin-bottom: 2rem;
+        max-width: 200px ;
+    }
+    .card img{
+        width: 100%;
+        border-radius: 16px 16px 0 0;
+        height:80px;
+    }
+    .card .dish-info{
+        padding: 1rem;
+    }
+    .card .title{
+        font-size: 1rem;
+    }
+    .card p:not(.price){
+        display: none;
+    }
+    .card .price{
+        font-size: 1.5rem;
+    }
+    .specials-order-btn{
+        font-size: 1.5rem;
+    }
+    
+  
+}

@@ -36,3 +36,30 @@
     align-items: center;
     justify-content: center;
 }
+@media screen and (max-width: 1040px) {
+    .footer-container{
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-gap: 10px;
+        flex-wrap: wrap;
+        padding-left: 0;
+        margin-left: 0;
+    }
+    .right{
+        flex-basis: 100%;
+        
+        text-align: center;
+    }
+    .left{
+        list-style: none;
+        flex-basis: calc(50% - 2rem);
+    }
+    .middle{
+        flex-basis: calc(50% - 2rem);
+        list-style: none;
+        
+    }
+    .copyright{
+        padding: 10px 100px;
+        
+    }
+}

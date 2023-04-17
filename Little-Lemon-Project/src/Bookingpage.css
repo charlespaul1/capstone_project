@@ -2,4 +2,15 @@
     height: 200px;
     width: 100%;
     object-fit: cover;
+    /* display: flex; */
 }
+@media  screen and (max-width: 1040px) {
+    .food-image img {
+        height: 200px;
+        width: 100%;
+        object-fit: cover;
+        /* display: flex; */
+    }
+
+}
+    

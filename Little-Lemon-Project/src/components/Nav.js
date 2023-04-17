@@ -1,24 +1,32 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './Nav.css'
-import Logo from '../assets/Logo .svg'
-import { Link } from 'react-router-dom'
+import Logo from '../assets/Logo .svg';
+import { Link } from 'react-router-dom';
+import { FaBars, FaTimes } from 'react-icons/fa';
 const Nav = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen)
+  };
   return (
+   
     <div className='container'>
     <Link to='/'>
       <img src={Logo} alt='Logo'/>
     </Link>
-    <nav>
-      <ul>
-        <li><Link to='/'>Home</Link></li>
-        <li><Link to='/menu'>Menu</Link></li>
-        <li><Link to='/booking-page'>BookingPage</Link></li>
-        <li><Link to='/order-online'>OrderOnline</Link></li>
-        <li><Link to='/login'>Login</Link></li>
-        
+    <nav >
+      <ul className={menuOpen ? 'nav-menu active' : 'nav-menu'}>
+        <li><Link to='/' onClick={toggleMenu}>Home</Link></li>
+        <li><Link to='/menu' onClick={toggleMenu}>Menu</Link></li>
+        <li><Link to='/booking-page' onClick={toggleMenu}>BookingPage</Link></li>
+        <li><Link to='/order-online' onClick={toggleMenu}>OrderOnline</Link></li>
+        <li><Link to='/login' onClick={toggleMenu}>Login</Link></li>
       </ul>
-    </nav>
-      
+      </nav>
+      <div className='hamburger' onClick={toggleMenu}>
+     {menuOpen ? (<FaTimes size={20} style= {{color: '#333'}} />) :
+        (<FaBars size={20} style= {{color: '#333'}} />)}
+      </div>
     </div>
   )
 }

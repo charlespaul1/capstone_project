@@ -124,8 +124,12 @@ const datepickerStyle = {
 }
 const styleH1 ={
   color: "#F4CE14",
-            fontSize: "2rem",
-            fontFamily: "Markazi Text', serif",
+  fontSize: "2rem",
+  fontFamily: "Markazi Text', serif",
+  '@media (max-width: 1040px)': {
+    fontSize :"64px",
+  }
+          
 }
 
 
@@ -318,8 +322,8 @@ const styleH1 ={
           </Field>
           <Button 
           type="submit" 
-          bgColor="#FFAFOO"
-          _hover={{bgColor: "#495E57", color:"#fff"}}
+          bgColor="#F4CE14"
+          _hover={{opacity: 0.5}}
           disabled={isSubmitting}
           isLoading={isSubmitting}
           role="button"

@@ -1,5 +1,6 @@
 import React from 'react';
 import 'animate.css';
+import './ConfirmedBooking.css';
 import Nav from './components/Nav' ;
 import { useLocation } from 'react-router-dom';
 const ConfirmedBooking = () => {
@@ -28,6 +29,7 @@ const ConfirmedBooking = () => {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
+      margin: '10px 0',
 
     }}
   >Thank you for making a Reservation with us. We can't wait to serve You </p>
@@ -52,8 +54,12 @@ const ConfirmedBooking = () => {
       width: '50%',
       alignItems: 'center',
       justifyContent: 'center',
-      marginLeft: '300px',
+      marginLeft: '100px',
       display: 'flex',
+      '@media (max-width: 768px)': {
+        marginLeft: '10px',
+      }
+      
     
     }}
   >
