@@ -19,12 +19,10 @@ const Nav = () => {
         <li><Link to='/' onClick={toggleMenu}>Home</Link></li>
         <li><Link to='/menu' onClick={toggleMenu}>Menu</Link></li>
         <li><Link to='/booking-page' onClick={toggleMenu}>BookingPage</Link></li>
-        <li><Link to='/order-online' onClick={toggleMenu}>OrderOnline</Link></li>
-        <li><Link to='/login' onClick={toggleMenu}>Login</Link></li>
-      </ul>
+        </ul>
       </nav>
       <div className='hamburger' onClick={toggleMenu}>
-     {menuOpen ? (<FaTimes size={20} style= {{color: '#333'}} />) :
+     {menuOpen ? (<FaTimes size={20} style= {{color: '#F4CE14'}} z-index={1} />) :
         (<FaBars size={20} style= {{color: '#333'}} />)}
       </div>
     </div>

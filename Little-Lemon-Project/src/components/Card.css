@@ -1,10 +1,12 @@
-.cards{
+.cards {
     width: 80%;
     display: flex;
     justify-content: space-between;
     margin-top: 0rem;
     padding-left: 100px;
+    overflow-x: scroll;
 }
+
 .card {
     background-color: #edefee;
     max-width: 300px;
@@ -13,81 +15,96 @@
     flex-direction: column;
     justify-content: space-between;
 }
+
 .card img {
-    border-radius: 16px 16px 0 0 ;
+    border-radius: 16px 16px 0 0;
     width: 300px;
     height: auto;
     max-height: 30%;
     padding: 0px 0px;
     object-fit: cover;
     margin-top: 0;
-} 
-.card .dish-info{
+}
+
+.card .dish-info {
     padding: 1.5rem;
     height: 90%;
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .card .title {
-  font-size: 18px;
-  font-weight: 600;
-  display: flex;
-  justify-content: space-between;
-  font-family: 'Karla', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Karla', sans-serif;
 }
 
 .card .price {
-  color: #EE9972;
-  font-weight: 600;
+    color: #EE9972;
+    font-weight: 600;
 }
 
 .card p:not(.price) {
-  font-size: 1rem;
-  line-height: 1.5;
-  color: #333;
-  margin: 2rem 0;
-  font-family: 'Karla', sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #333;
+    margin: 2rem 0;
+    font-family: 'Karla', sans-serif;
 
 }
 
 .specials-order-btn {
-  margin-top: auto;
-  cursor: pointer;
+    margin-top: auto;
+    cursor: pointer;
 }
-@media  only screen and (max-width: 1040px) {
-    .cards{
+.cards::-webkit-scrollbar{
+    display: none;
+}
+
+@media only screen and (max-width: 1040px) {
+    .cards {
         flex-direction: row;
         /* align-items: center; */
-        padding-left: 0px;
-        flex-wrap: wrap;
+        padding-left: 2px;
+        flex-wrap:nowrap;
         width: 100%;
-        overflow: scroll;
+        gap: 0.5rem;
+        margin-bottom: 20px;
+
     }
-    .card{
+
+    .card {
         margin-bottom: 2rem;
-        max-width: 200px ;
+        flex:0, 0, 200px;
     }
-    .card img{
+
+    .card img {
         width: 100%;
         border-radius: 16px 16px 0 0;
-        height:80px;
+        height: 80px;
     }
-    .card .dish-info{
+
+    .card .dish-info {
         padding: 1rem;
     }
-    .card .title{
+
+    .card .title {
         font-size: 1rem;
     }
-    .card p:not(.price){
+
+    .card p:not(.price) {
         display: none;
     }
-    .card .price{
+
+    .card .price {
         font-size: 1.5rem;
     }
-    .specials-order-btn{
+
+    .specials-order-btn {
         font-size: 1.5rem;
     }
-    
-  
+
+
 }
