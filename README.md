@@ -31,12 +31,38 @@ The design of the Little Lemon Restaurant website was created using Figma. Figma
 
 ## Installation
 `1. ` Clone this repository: 
-      git clone 
+      
+      git clone https://github.com/charlespaul1/capstone_project.git
+
 `2. ` Navigate to the project directory: 
-      cd <project_directory>
-`3. ` Install dependencies: npm install
-`4. ` Start the development server: npm start
+      
+      cd capstone_project
+
+`3. ` Install dependencies: 
+      
+      npm install
+
+`4. ` Start the development server: 
+
+      npm start
+
 `5. ` Open your browser and visit http://localhost:3000 to view the website.
+
+**Note: Make sure you have Node.js and npm (Node Package Manager) installed on your system.**
+# Desktop Look
+![Screenshot from 2023-06-09 08-37-47](https://github.com/charlespaul1/capstone_project/assets/107033244/a50cb264-cdc1-46c1-a1da-8c86823f6f88)
+
+![Screenshot from 2023-06-09 08-38-42](https://github.com/charlespaul1/capstone_project/assets/107033244/8c227d23-0c4a-435c-9de3-7bd2a798a1a0)
+
+![Screenshot from 2023-06-09 08-40-10](https://github.com/charlespaul1/capstone_project/assets/107033244/c5a84159-1ba4-4257-9882-2007961e36d7)
+
+# Mobile Look
+![Screenshot from 2023-06-09 08-42-26](https://github.com/charlespaul1/capstone_project/assets/107033244/e6ed0b38-1dcf-4ef4-8c07-5247b1b21b56)
+
+![Screenshot from 2023-06-09 08-43-03](https://github.com/charlespaul1/capstone_project/assets/107033244/6a5b5d76-2d25-4825-990d-61247085bd04)
+
+![Screenshot from 2023-06-09 08-43-34](https://github.com/charlespaul1/capstone_project/assets/107033244/060862d9-6586-4c52-bf70-a2d6650827d0)
+
 
 
 
